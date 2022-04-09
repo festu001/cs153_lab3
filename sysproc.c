@@ -13,11 +13,11 @@ sys_fork(void)
   return fork();
 }
 
-int
+void
 sys_exit(void)
 {
-  exit();
-  return 0;  // not reached
+  exit(0);
+  //return 0;  // not reached
 }
 
 int
