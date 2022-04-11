@@ -165,6 +165,7 @@ main(int argc, char *argv[])
   balloc(freeblock);
 
   exit(0);
+  return 0;
 }
 
 void
@@ -266,6 +267,7 @@ iappend(uint inum, void *xp, int n)
   off = xint(din.size);
   // printf("append inum %d at off %d sz %d\n", inum, off, n);
   while(n > 0){
+
     fbn = off / BSIZE;
     assert(fbn < MAXFILE);
     if(fbn < NDIRECT){

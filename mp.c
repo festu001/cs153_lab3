@@ -26,6 +26,7 @@ sum(uchar *addr, int len)
   return sum;
 }
 
+
 // Look for an MP structure in the len bytes at addr.
 static struct mp*
 mpsearch1(uint a, int len)
