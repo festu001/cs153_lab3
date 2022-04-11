@@ -1,0 +1,41 @@
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch main
+# Your branch is up to date with 'CS153/main'.
+#
+# Changes to be committed:
+#	new file:   bug.c
+#	modified:   cat.c
+#	modified:   cuth
+#	modified:   defs.h
+#	modified:   dot-bochsrc
+#	modified:   echo.c
+#	modified:   forktest.c
+#	modified:   grep.c
+#	new file:   hello.c
+#	modified:   init.c
+#	modified:   kill.c
+#	modified:   ln.c
+#	modified:   ls.c
+#	modified:   mkdir.c
+#	modified:   mkfs.c
+#	modified:   mp.c
+#	modified:   pipe.c
+#	modified:   pr.pl
+#	modified:   printpcs
+#	modified:   proc.c
+#	modified:   rm.c
+#	modified:   runoff
+#	modified:   runoff1
+#	modified:   sh.c
+#	modified:   show1
+#	modified:   sign.pl
+#	modified:   spinp
+#	modified:   stressfs.c
+#	modified:   sysproc.c
+#	modified:   usertests.c
+#	modified:   vectors.pl
+#	modified:   wc.c
+#	modified:   zombie.c
+#

@@ -169,7 +169,7 @@ main(void)
     wait();
   }
   exit();
-
+    return 0;
 }
 
 void

@@ -165,7 +165,7 @@ main(int argc, char *argv[])
   balloc(freeblock);
 
   exit(0);
-  return 0;
+  //return 0;
 }
 
 void

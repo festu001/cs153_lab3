@@ -61,7 +61,7 @@ main(int argc, char *argv[])
     close(fd);
   }
   exit();
-
+    return 0;
 }
 
 // Regexp matcher from Kernighan & Pike,

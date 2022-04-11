@@ -53,5 +53,5 @@ main(void)
 {
   forktest();
   exit();
-
+  return 0;
 }
