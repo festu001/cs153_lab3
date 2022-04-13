@@ -40,5 +40,6 @@ main(int argc, char *argv[])
     close(fd);
   }
   exit();
-  //return 0;
+
+  return 0;
 }

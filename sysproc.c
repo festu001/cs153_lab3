@@ -20,12 +20,7 @@ sys_exit(void)
   // return 0;  // not reached
 }
 
-void
-sys_exit2(int x)
-{
-    exit2(x);
-    // return 0;  // not reached
-}
+
 
 
 
@@ -97,4 +92,25 @@ sys_uptime(void)
   xticks = ticks;
   release(&tickslock);
   return xticks;
+}
+
+void
+sys_exit2(void)
+{
+    exit2(0);
+   //  return 0;  // not reached
+}
+
+int
+sys_hello(void)
+{
+    hello();
+    return 0;
+}
+
+
+int
+sys_waitpid(void)
+{
+    return waitpid();
 }
