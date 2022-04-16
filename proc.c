@@ -540,7 +540,7 @@ procdump(void)
 
 // New System Call for the new exit. Need to implement storing the exit status
 void
-exit2(int status)
+exit2(int x)
 {
     struct proc *curproc = myproc();
     struct proc *p;
@@ -589,7 +589,8 @@ exit2(int status)
 }
 
 void hello(void){
-    cprintf("\n\n Hello there from kernel! \n\n");
+    cprintf("\n\n Hello there from kernal! \n\n");
+
 }
 
 
