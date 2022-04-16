@@ -540,15 +540,11 @@ procdump(void)
 
 // New System Call for the new exit. Need to implement storing the exit status
 void
-exit2(int status)
+exit2(int x)
 {
     struct proc *curproc = myproc();
     struct proc *p;
     int fd;
-
-    // NEW CODE: Saving status
-    curproc->status = status;
-    cprintf("Calling new exit function.\n Status saved: %d", status);
 
     if(curproc == initproc)
         panic("init exiting");
@@ -589,7 +585,8 @@ exit2(int status)
 }
 
 void hello(void){
-    cprintf("\n\n Hello there from kernel! \n\n");
+    cprintf("\n\n Hello there from kernal! \n\n");
+
 }
 
 int waitpid(void){
