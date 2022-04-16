@@ -101,11 +101,10 @@ sys_exit2(void)
    //  return 0;  // not reached
 }
 
-int
+void
 sys_hello(void)
 {
     hello();
-    return 0;
 }
 
 
@@ -114,3 +113,4 @@ sys_waitpid(void)
 {
     return waitpid();
 }
+
