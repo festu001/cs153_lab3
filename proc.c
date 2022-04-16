@@ -540,7 +540,7 @@ procdump(void)
 
 // New System Call for the new exit. Need to implement storing the exit status
 void
-exit2(int x)
+exit2(int status)
 {
     struct proc *curproc = myproc();
     struct proc *p;
