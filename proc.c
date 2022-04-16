@@ -548,7 +548,7 @@ exit2(int status)
 
     // NEW CODE: Saving status
     curproc->status = status;
-    cprintf("Calling new exit function.\n Status saved: %d", status);
+    cprintf("Calling new exit function.\n Status saved: %d\n", status);
 
     if(curproc == initproc)
         panic("init exiting");
@@ -591,6 +591,7 @@ exit2(int status)
 void hello(void){
     cprintf("\n\n Hello there from kernel! \n\n");
 }
+
 
 int waitpid(void){
     struct proc *p;

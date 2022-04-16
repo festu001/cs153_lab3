@@ -134,6 +134,7 @@ static int (*syscalls[])(void) = {
 [SYS_waitpid]   sys_waitpid,
 };
 
+
 void
 syscall(void)
 {

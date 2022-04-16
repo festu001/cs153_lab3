@@ -94,6 +94,7 @@ sys_uptime(void)
   return xticks;
 }
 
+
 void
 sys_exit2(void)
 {
