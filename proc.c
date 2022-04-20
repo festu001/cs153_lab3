@@ -554,7 +554,7 @@ exit2(int status)
 
     // NEW CODE: Saving status
     curproc->status = status;
-    cprintf("Calling new exit function.\n Status saved: %d\n", status);
+    // cprintf("Calling new exit function.\n Status saved: %d\n", status); // DEBUG: indicate that the new exit2() function was called.
 
     if(curproc == initproc)
         panic("init exiting");
