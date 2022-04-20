@@ -19,8 +19,8 @@ int main(int argc, char *argv[])
         printf(1, "\ntype \"%s 1\" to test exit and wait, \"%s 2\" to test waitpid\n", argv[0], argv[0]);
 
     // End of test
-    exit();
-  //  exit(0);
+  //  exit();
+    exit2(0);
     return 0;
 }
 
@@ -36,21 +36,21 @@ int exitWait(void) {
         if (pid == 0) { // only the child executed this code
             if (i == 0){
                 printf(1, "\nThis is child with PID# %d and I will exit with status %d\n", getpid(), 0);
-                exit();
-                //  exit(0);
+                //exit();
+                  exit2(0);
             }
             else{
                 printf(1, "\nThis is child with PID# %d and I will exit with status %d\n" ,getpid(), -1);
-                exit();
-                //  exit(-1);
+                //exit();
+                  exit2(-1);
             }
         } else if (pid > 0) { // only the parent executes this code
             ret_pid = wait(&exit_status);
             printf(1, "\n This is the parent: child with PID# %d has exited with status %d\n", ret_pid, exit_status);
         } else { // something went wrong with fork system call
             printf(2, "\nError using fork\n");
-            exit();
-            //  exit(-1);
+           // exit();
+              exit2(-1);
         }
     }
     return 0;
@@ -69,8 +69,8 @@ int waitPid(void){
         pid_a[i] = fork();
         if (pid_a[i] == 0) { // only the child executed this code
             printf(1, "\n This is child with PID# %d and I will exit with status %d\n", getpid(), getpid() + 4);
-            exit();
-            //  exit(getpid() + 4);
+            //exit();
+              exit2(getpid() + 4);
         }
     }
     sleep(5);
@@ -98,7 +98,7 @@ int waitPid(void){
     printf(1, "\n This is the parent: Now try to wait for a invalid Number, this should not get stuck..\n");
     ret_pid = waitpid(9999, &exit_status, 0);
     printf(1, "\n This is the parent: Child# 9999 has ret code %d, expected: -1\n",ret_pid);
-    //printf(1, "\n This is the parent: Child# %d has exited with status %d\n",ret_pid, exit_status);
+    printf(1, "\n This is the parent: Child# %d has exited with status %d\n",ret_pid, exit_status);
 
     printf(1, "\n This is the parent: Now try to give invalid argument.\n");
     ret_pid = waitpid(9999, (int*) 0xffffffff, 0);

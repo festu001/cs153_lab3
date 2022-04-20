@@ -1799,6 +1799,6 @@ main(int argc, char *argv[])
 
   exectest();
 
-  exit();
+  exit2(0);
     return 0;
 }
