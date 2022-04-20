@@ -282,7 +282,7 @@ wait(int *status)
   struct proc *p;
   int havekids, pid;
   struct proc *curproc = myproc();
-  
+
   acquire(&ptable.lock);
   for(;;){
     // Scan through table looking for exited children.
@@ -554,7 +554,7 @@ exit2(int status)
 
     // NEW CODE: Saving status
     curproc->status = status;
-    cprintf("Calling new exit function.\n Status saved: %d\n", status);
+    // cprintf("Calling new exit function.\n Status saved: %d\n", status); // DEBUG: indicate that the new exit2() function was called.
 
     if(curproc == initproc)
         panic("init exiting");
