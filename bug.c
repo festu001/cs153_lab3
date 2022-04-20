@@ -11,6 +11,6 @@ main (int argc, char* argv[])
     printf(1, "checkpoint3\n");
 
 
-    exit();
+    exit2(0);
     return 0;
 }

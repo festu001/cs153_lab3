@@ -272,6 +272,7 @@ exit(void)
 
 
 
+
 // Wait for a child process to exit and return its pid.
 // Return -1 if this process has no children.
 // ADDITION FOR LAB 1 PT B: Should also
@@ -301,7 +302,7 @@ wait(int *status)
         p->name[0] = 0;
         p->killed = 0;
         p->state = UNUSED;
-        status = p->status; // Returning the exit status of the terminated child process.
+        *status = p->status; // Returning the exit status of the terminated child process.
         release(&ptable.lock);
         return pid;
       }
