@@ -20,10 +20,6 @@ sys_exit(void)
   // return 0;  // not reached
 }
 
-
-
-
-
 int
 sys_wait(void)
 {
@@ -124,5 +120,14 @@ sys_hello(void)
 int
 sys_waitpid(void)
 {
-    return waitpid(0, (int*)0 ,0);
+    int pid;
+
+    argint(0, &pid);
+
+    int* status;
+    if (argptr(1, (void*)&status, sizeof(status)) < 0)
+        return -1;
+    return waitpid(pid, status ,0);
+
+    //return waitpid(0, (int*)0 ,0);
 }

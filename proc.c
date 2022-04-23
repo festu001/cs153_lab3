@@ -625,10 +625,10 @@ int waitpid(int pid, int *status, int options){
                 p->killed = 0;
                 p->state = UNUSED;
 
+                if(status)
+                        *status = p->status;
 
                 release(&ptable.lock);
-
-
                 return pid2;
             }
         }
