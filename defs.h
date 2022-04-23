@@ -122,7 +122,7 @@ void            wakeup(void*);
 void            yield(void);
 void            exit2(int);  //custom exit2
 void            hello(void); //custom hello
-int             waitpid(void); //custom waitpid
+int             waitpid(int, int*, int); //custom waitpid
 
 
 // swtch.S
