@@ -45,6 +45,7 @@ forktest(void)
     exit2(0);
   }
 
+
   printf(1, "fork test OK\n");
 }
 

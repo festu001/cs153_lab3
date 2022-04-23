@@ -23,7 +23,7 @@ int getpid(void);
 char* sbrk(int);
 int sleep(int);
 int uptime(void);
-void exit2(int);
+void exit2(int) __attribute__((noreturn));
 int hello(void); //custom
 int waitpid(int, int*, int);
 
