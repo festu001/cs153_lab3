@@ -120,9 +120,9 @@ void            userinit(void);
 int             wait(int*);
 void            wakeup(void*);
 void            yield(void);
-void            exit2(int);  //custom exit2
+void            exit2(int) __attribute__((noreturn));  //custom exit2
 void            hello(void); //custom hello
-int             waitpid(void); //custom waitpid
+int             waitpid(int, int*, int); //custom waitpid
 
 
 // swtch.S

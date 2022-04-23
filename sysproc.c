@@ -20,13 +20,14 @@ sys_exit(void)
   // return 0;  // not reached
 }
 
-
-
-
-
 int
 sys_wait(void)
 {
+   int* status;
+   argptr(0, (void*)&status, sizeof(status));
+   return wait(status);
+
+
   return wait((int*)-1);
 }
 
@@ -95,10 +96,16 @@ sys_uptime(void)
 }
 
 
-void
+int
 sys_exit2(void)
 {
-    exit2(0);
+    int status;
+    if (argint(0, &status) < 0)
+        return -1;
+    exit2(status);
+    return 0;
+
+   // exit2(0);
    //  return 0;  // not reached
 }
 
@@ -113,5 +120,14 @@ sys_hello(void)
 int
 sys_waitpid(void)
 {
-    return waitpid();
+    int pid;
+
+    argint(0, &pid);
+
+    int* status;
+    if (argptr(1, (void*)&status, sizeof(status)) < 0)
+        return -1;
+    return waitpid(pid, status ,0);
+
+    //return waitpid(0, (int*)0 ,0);
 }
