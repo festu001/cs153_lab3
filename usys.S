@@ -32,4 +32,3 @@ SYSCALL(uptime)
 SYSCALL(exit2)
 SYSCALL(hello)
 SYSCALL(waitpid)
-
