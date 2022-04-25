@@ -17,18 +17,19 @@ int
 sys_exit(void)
 {
   exit();
-  // return 0;  // not reached
+  return 0;  // not reached
 }
 
 int
 sys_wait(void)
 {
-   int* status;
-   argptr(0, (void*)&status, sizeof(status));
-   return wait(status);
+   char *status = 0;
+   argptr(0, &status, 4);
+   int* theStatus = (int*)status;
 
+//   return wait((int*)-1);
+   return wait(theStatus);
 
-  return wait((int*)-1);
 }
 
 int
