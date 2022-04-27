@@ -106,6 +106,7 @@ extern int sys_uptime(void);
 extern int sys_exit2(void);
 extern int sys_hello(void);
 extern int sys_waitpid(void);
+extern int sys_updatePri(void);
 
 static int (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
@@ -132,6 +133,7 @@ static int (*syscalls[])(void) = {
 [SYS_exit2]   sys_exit2,
 [SYS_hello]   sys_hello,
 [SYS_waitpid]   sys_waitpid,
+[SYS_updatePri] sys_updatePri,
 };
 
 

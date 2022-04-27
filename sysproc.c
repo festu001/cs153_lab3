@@ -132,3 +132,10 @@ sys_waitpid(void)
 
     //return waitpid(0, (int*)0 ,0);
 }
+
+int
+sys_updatePri(void)
+{
+
+    return updatePri();
+}
