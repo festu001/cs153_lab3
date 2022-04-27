@@ -26,6 +26,8 @@ int uptime(void);
 void exit2(int);
 int hello(void); //custom
 int waitpid(int, int*, int);
+int updatePri(void);
+
 
 
 // ulib.c

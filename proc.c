@@ -647,3 +647,10 @@ int waitpid(int pid, int *status, int options){
     }
 
 }
+
+
+int updatePri()
+{
+
+    return 0;
+}
