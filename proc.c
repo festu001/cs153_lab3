@@ -219,6 +219,8 @@ fork(void)
 
   release(&ptable.lock);
 
+  // DEBUG
+  cprintf("New process created with priority: %d", np->priority);
   return pid;
 }
 
@@ -600,7 +602,6 @@ exit2(int status)
 
 void hello(void){
     cprintf("\n\n Hello there from kernal! \n\n");
-
 }
 
 
