@@ -194,6 +194,7 @@ fork(void)
     kfree(np->kstack);
     np->kstack = 0;
     np->state = UNUSED;
+    np->priority = curproc->priority; // The new process' priority will be equal to the current priority of its parent. (Lab 2).
     return -1;
   }
   np->sz = curproc->sz;
