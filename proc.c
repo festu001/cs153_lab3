@@ -221,7 +221,7 @@ fork(void)
   release(&ptable.lock);
 
   // DEBUG
-  cprintf("New process created with priority: %d", np->priority);
+  cprintf("New process created with priority: %d\n", np->priority);
   return pid;
 }
 
@@ -652,8 +652,14 @@ int waitpid(int pid, int *status, int options){
 }
 
 
-int updatePri()
+void updatePri(int priority)
 {
 
-    return 0;
+    struct proc *curproc = myproc();
+    curproc->priority = priority;
+
+    cprintf("Updated priority value is: %d\n", curproc->priority);
+
+    yield();
+
 }
