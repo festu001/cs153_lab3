@@ -343,27 +343,57 @@ scheduler(void)
   struct proc *p;
   struct cpu *c = mycpu();
   c->proc = 0;
-  
+
+  struct proc *proctemp; //temp process to iterate through nested for loops.
+  struct proc *procPrio; //The process with the lowest priority from all processes that is RUNNABLE
+
   for(;;){
     // Enable interrupts on this processor.
     sti();
 
     // Loop over process table looking for process to run.
     acquire(&ptable.lock);
+
+    //NEED TO IMPLEMENT:
+    // When a RUNNABLE process is found, must compare it to all other RUNNABLE processes.
+    // Processes that wait decrement their priority. Processes that run increment.
+
     for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
       if(p->state != RUNNABLE)
         continue;
 
+        procPrio = p;
+      //Find the process with lowest priority, setting it as our procPrio
+      for(proctemp = ptable.proc; proctemp < &ptable.proc[NPROC]; proctemp++)
+      {
+          if(proctemp->state != RUNNABLE || proctemp->priority >= procPrio->priority)
+              continue;
+          procPrio = proctemp;
+      }
+      //Decrements the priority of all other runnable processes that waits.
+      for(proctemp = ptable.proc; proctemp < &ptable.proc[NPROC]; proctemp++)
+      {
+          if((proctemp->state != RUNNABLE && proctemp->state != SLEEPING) || proctemp == procPrio)
+              continue;
+          if(proctemp->state == RUNNABLE && proctemp->priority > 0)
+            proctemp->priority --;
+      }
+
       // Switch to chosen process.  It is the process's job
       // to release ptable.lock and then reacquire it
       // before jumping back to us.
-      c->proc = p;
-      switchuvm(p);
-      p->state = RUNNING;
+      c->proc = procPrio;
+      switchuvm(procPrio);
+      procPrio->state = RUNNING;
 
-      swtch(&(c->scheduler), p->context);
+      swtch(&(c->scheduler), procPrio->context);
       switchkvm();
 
+      //Process that runs increments priority.
+      if (procPrio->priority < 31) {
+          procPrio->priority++;
+     //     cprintf("Running process has priority incremented to: %d\n", procPrio->priority);
+      }
       // Process is done running for now.
       // It should have changed its p->state before coming back.
       c->proc = 0;
