@@ -11,13 +11,16 @@ void work() {
 }
 
 int main() {
-    set_prior(0);
+
+    int status = 0;
+
+    updatePri(0);
     int i = 0;
     int pid = 0;
     for(i = 0; i < 3; i++) {
         pid = fork();
         if(!pid) {
-            set_prior(i * 10);
+            updatePri(i * 10);
             work();
             printf(0, "child %d done\n", getpid());
             exit();
@@ -25,7 +28,7 @@ int main() {
     }
     if(pid) {
         for(i = 0; i < 3; i++)
-            wait();
+            wait(&status);
     }
     printf(0, "parent %d done\n", getpid());
     exit();

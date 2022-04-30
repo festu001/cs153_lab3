@@ -133,9 +133,15 @@ sys_waitpid(void)
     //return waitpid(0, (int*)0 ,0);
 }
 
-int
+void
 sys_updatePri(void)
 {
-
-    return updatePri();
+    int priority = 0;
+    argint(0, &priority);
+    if (priority < 0 || priority > 31) {
+        //Invalid priority value obtained from argument. Set default priority value
+    }
+    else if (priority >= 0 && priority <= 31) {
+        updatePri(priority);
+    }
 }
