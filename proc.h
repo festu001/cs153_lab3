@@ -53,6 +53,7 @@ struct proc {
   int priority;                //Priority value of the process. 0 Min, 31 Max
   int T_start;                 // Process starting time   TODO: need to find where to assign this first...
   int T_finish;                // Process finish time
+  int T_burst;                 // Process burst time
 };
 
 // Process memory is laid out contiguously, low addresses first:
