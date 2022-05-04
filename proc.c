@@ -627,6 +627,11 @@ exit2(int status)
 
     // Jump into the scheduler, never to return.
     curproc->state = ZOMBIE;
+
+    // FIXME: Move this somewhere else, this is in the wrong place.
+    curproc->T_finish = ticks; // Get the finishing time of the process;
+    cprintf("DEBUG: T_finish = %d", curproc->T_finish);.
+
     sched();
     panic("zombie exit");
 }
