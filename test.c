@@ -23,7 +23,7 @@ int main() {
             updatePri(i * 10);
             work();
             printf(0, "child %d done\n", getpid());
-            exit();
+            exit2(0);
         }
     }
     if(pid) {
@@ -31,5 +31,6 @@ int main() {
             wait(&status);
     }
     printf(0, "parent %d done\n", getpid());
-    exit();
+    exit2(0);
+    return 0;
 }

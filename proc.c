@@ -369,14 +369,17 @@ scheduler(void)
           if(proctemp->state != RUNNABLE || proctemp->priority >= procPrio->priority)
               continue;
           procPrio = proctemp;
+          procPrio->T_burst += 1; // Increment the burst time.
       }
+
       //Decrements the priority of all other runnable processes that waits.
       for(proctemp = ptable.proc; proctemp < &ptable.proc[NPROC]; proctemp++)
       {
           if((proctemp->state != RUNNABLE && proctemp->state != SLEEPING) || proctemp == procPrio)
               continue;
+
           if(proctemp->state == RUNNABLE && proctemp->priority > 0)
-            proctemp->priority --;
+             proctemp->priority --;
       }
 
       // Switch to chosen process.  It is the process's job
@@ -390,10 +393,13 @@ scheduler(void)
       switchkvm();
 
       //Process that runs increments priority.
+
       if (procPrio->priority < 31) {
           procPrio->priority++;
-     //     cprintf("Running process has priority incremented to: %d\n", procPrio->priority);
       }
+
+     //     cprintf("Running process has priority incremented to: %d\n", procPrio->priority);
+
       // Process is done running for now.
       // It should have changed its p->state before coming back.
       c->proc = 0;
@@ -589,6 +595,13 @@ exit2(int status)
     struct proc *p;
     int fd;
 
+    // FIXME: Move this somewhere else, this is in the wrong place.
+    curproc->T_finish = ticks; // Get the finishing time of the process;
+    int turnaroundTime = curproc->T_finish - curproc->T_start;
+    int waitingTime = turnaroundTime - curproc->T_burst;
+    cprintf("DEBUG: Turnaround time = %d\n", turnaroundTime);
+    cprintf("DEBUG: Waiting time = %d\n", waitingTime);
+
     // NEW CODE: Saving status
     curproc->status = status;
     // cprintf("Calling new exit function.\n Status saved: %d\n", status); // DEBUG: indicate that the new exit2() function was called.
@@ -622,8 +635,6 @@ exit2(int status)
                 wakeup1(initproc);
         }
     }
-
-
 
     // Jump into the scheduler, never to return.
     curproc->state = ZOMBIE;
