@@ -7,6 +7,7 @@
 #include "mmu.h"
 #include "proc.h"
 
+
 int
 sys_fork(void)
 {
@@ -23,12 +24,8 @@ sys_exit(void)
 int
 sys_wait(void)
 {
-   char *status = 0;
-   argptr(0, &status, 4);
-   int* theStatus = (int*)status;
 
-//   return wait((int*)-1);
-   return wait(theStatus);
+  return wait();
 
 }
 
@@ -97,51 +94,3 @@ sys_uptime(void)
 }
 
 
-int
-sys_exit2(void)
-{
-    int status;
-    if (argint(0, &status) < 0)
-        return -1;
-    exit2(status);
-    return 0;
-
-   // exit2(0);
-   //  return 0;  // not reached
-}
-
-int
-sys_hello(void)
-{
-    hello();
-    return 0;
-}
-
-
-int
-sys_waitpid(void)
-{
-    int pid;
-
-    argint(0, &pid);
-
-    int* status;
-    if (argptr(1, (void*)&status, sizeof(status)) < 0)
-        return -1;
-    return waitpid(pid, status ,0);
-
-    //return waitpid(0, (int*)0 ,0);
-}
-
-void
-sys_updatePri(void)
-{
-    int priority = 0;
-    argint(0, &priority);
-    if (priority < 0 || priority > 31) {
-        //Invalid priority value obtained from argument. Set default priority value
-    }
-    else if (priority >= 0 && priority <= 31) {
-        updatePri(priority);
-    }
-}
